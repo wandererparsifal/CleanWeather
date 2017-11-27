@@ -5,5 +5,5 @@ package com.parsifal.cleanweather.domain.repository;
  */
 public interface WeatherRepository {
 
-    String getWeather();
+    String getWeather(String cityID);
 }
