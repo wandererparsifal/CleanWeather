@@ -2,6 +2,9 @@ package com.parsifal.cleanweather.presentation.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.parsifal.cleanweather.R;
@@ -16,6 +19,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     private MainPresenter mPresenter = null;
 
+    private RelativeLayout mProgress = null;
+
+    private Button mButton = null;
+
     private TextView mTextView = null;
 
     @Override
@@ -26,18 +33,25 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 this, new WeatherRepositoryImpl(this));
 
         setContentView(R.layout.activity_main);
+        mProgress = findViewById(R.id.progressLayout);
+        mButton = findViewById(R.id.button);
         mTextView = findViewById(R.id.text);
-        mPresenter.getWeather("001");
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.getWeather("001");
+            }
+        });
     }
 
     @Override
     public void showProgress() {
-
+        mProgress.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        mProgress.setVisibility(View.GONE);
     }
 
     @Override

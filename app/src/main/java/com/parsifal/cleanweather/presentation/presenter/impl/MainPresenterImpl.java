@@ -28,6 +28,7 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
 
     @Override
     public void getWeather(String cityID) {
+        mView.showProgress();
         BaseInteractor getWeatherInterpolator = new GetWeatherInteractorImpl(mExecutor,
                 mMainThread, mRepository, cityID, this);
         getWeatherInterpolator.execute();
@@ -36,11 +37,13 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
     @Override
     public void onWeatherGet(String weather) {
         mView.onWeatherGet(weather);
+        mView.hideProgress();
     }
 
     @Override
     public void onWeatherError(String error) {
         mView.showError("Error : " + error);
+        mView.hideProgress();
     }
 
     @Override
