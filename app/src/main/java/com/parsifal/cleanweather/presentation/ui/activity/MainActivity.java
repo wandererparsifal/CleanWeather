@@ -12,7 +12,7 @@ import com.parsifal.cleanweather.data.WeatherRepositoryImpl;
 import com.parsifal.cleanweather.domain.executor.impl.ThreadExecutor;
 import com.parsifal.cleanweather.presentation.presenter.base.MainPresenter;
 import com.parsifal.cleanweather.presentation.presenter.impl.MainPresenterImpl;
-import com.parsifal.cleanweather.presentation.ui.MainThreadImpl;
+import com.parsifal.cleanweather.MainThreadImpl;
 import com.parsifal.cleanweather.presentation.ui.base.MainView;
 
 public class MainActivity extends AppCompatActivity implements MainView {

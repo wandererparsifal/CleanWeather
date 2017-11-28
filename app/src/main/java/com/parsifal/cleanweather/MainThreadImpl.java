@@ -1,4 +1,4 @@
-package com.parsifal.cleanweather.presentation.ui;
+package com.parsifal.cleanweather;
 
 import android.os.Handler;
 import android.os.Looper;
