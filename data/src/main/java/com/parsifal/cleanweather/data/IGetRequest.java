@@ -11,6 +11,6 @@ import retrofit2.http.Query;
  */
 public interface IGetRequest {
 
-    @GET("v5/weather/")
-    Call<Weather> getWeather(@Query("city") String cityID);
+    @GET("s6/weather/now/")
+    Call<Weather> getWeather(@Query("location") String cityID);
 }
