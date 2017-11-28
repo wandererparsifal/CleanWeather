@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.getWeather("001");
+                mPresenter.getWeather("CN101070201");
             }
         });
     }
