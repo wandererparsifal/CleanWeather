@@ -42,7 +42,7 @@ public class GetWeatherInteractorImpl extends AbstractInteractor {
             mMainThread.post(new Runnable() {
                 @Override
                 public void run() {
-                    mCallback.onWeatherGet(weather.toString());
+                    mCallback.onWeatherGet(weather);
                 }
             });
         }

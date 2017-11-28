@@ -1,11 +1,13 @@
 package com.parsifal.cleanweather.presentation.presenter.impl;
 
+import com.parsifal.cleanweather.domain.bean.Weather;
 import com.parsifal.cleanweather.domain.executor.Executor;
 import com.parsifal.cleanweather.domain.executor.MainThread;
 import com.parsifal.cleanweather.domain.interactor.base.BaseInteractor;
 import com.parsifal.cleanweather.domain.interactor.callback.GetWeatherCallback;
 import com.parsifal.cleanweather.domain.interactor.impl.GetWeatherInteractorImpl;
 import com.parsifal.cleanweather.domain.repository.WeatherRepository;
+import com.parsifal.cleanweather.presentation.converter.WeatherConverter;
 import com.parsifal.cleanweather.presentation.presenter.base.AbstractPresenter;
 import com.parsifal.cleanweather.presentation.presenter.base.MainPresenter;
 import com.parsifal.cleanweather.presentation.ui.base.MainView;
@@ -35,8 +37,8 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
     }
 
     @Override
-    public void onWeatherGet(String weather) {
-        mView.onWeatherGet(weather);
+    public void onWeatherGet(Weather weather) {
+        mView.onWeatherGet(WeatherConverter.converter(weather));
         mView.hideProgress();
     }
 
