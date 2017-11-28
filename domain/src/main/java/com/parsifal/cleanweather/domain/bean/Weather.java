@@ -1,4 +1,4 @@
-package com.parsifal.cleanweather.data.bean;
+package com.parsifal.cleanweather.domain.bean;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.parsifal.cleanweather.domain.interactor.impl;
 
+import com.parsifal.cleanweather.domain.bean.Weather;
 import com.parsifal.cleanweather.domain.executor.Executor;
 import com.parsifal.cleanweather.domain.executor.MainThread;
 import com.parsifal.cleanweather.domain.interactor.base.AbstractInteractor;
@@ -27,7 +28,7 @@ public class GetWeatherInteractorImpl extends AbstractInteractor {
 
     @Override
     public void run() {
-        final String weather = mRepository.getWeather(mCityID);
+        final Weather weather = mRepository.getWeather(mCityID);
         if (null == weather) {
             // notify this on the main thread
             mMainThread.post(new Runnable() {
@@ -41,7 +42,7 @@ public class GetWeatherInteractorImpl extends AbstractInteractor {
             mMainThread.post(new Runnable() {
                 @Override
                 public void run() {
-                    mCallback.onWeatherGet(weather);
+                    mCallback.onWeatherGet(weather.toString());
                 }
             });
         }

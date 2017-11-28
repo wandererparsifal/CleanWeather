@@ -1,6 +1,6 @@
 package com.parsifal.cleanweather.data;
 
-import com.parsifal.cleanweather.data.bean.Weather;
+import com.parsifal.cleanweather.domain.bean.Weather;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

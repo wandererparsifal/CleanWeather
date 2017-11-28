@@ -1,9 +1,8 @@
 package com.parsifal.cleanweather.data;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.parsifal.cleanweather.data.bean.Weather;
+import com.parsifal.cleanweather.domain.bean.Weather;
 import com.parsifal.cleanweather.domain.repository.WeatherRepository;
 
 import java.io.IOException;
@@ -13,7 +12,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,21 +28,7 @@ public class WeatherRepositoryImpl implements WeatherRepository {
     }
 
     @Override
-    public String getWeather(String cityID) {
-        String weather;
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (null == cityID) {
-            weather = null;
-        } else if ("001".equals(cityID)) {
-            weather = "晴";
-        } else {
-            weather = "多云";
-        }
-
+    public Weather getWeather(String cityID) {
         Interceptor commonParams = new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -70,19 +54,17 @@ public class WeatherRepositoryImpl implements WeatherRepository {
 
         IGetRequest getRequest = retrofit.create(IGetRequest.class);
         Call<Weather> call = getRequest.getWeather(cityID);
-        call.enqueue(new Callback<Weather>() {
-            @Override
-            public void onResponse(Call<Weather> call, Response<Weather> response) {
-                Log.d("test", "response " + response.toString());
-                Log.d("test", "string " + response.body().toString());
-            }
 
-            @Override
-            public void onFailure(Call<Weather> call, Throwable t) {
-                Log.e("test", "onFailure");
-            }
-        });
-
+        Response<Weather> response = null;
+        try {
+            response = call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Weather weather = null;
+        if (null != response) {
+            weather = response.body();
+        }
         return weather;
     }
 }
